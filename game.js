@@ -20,7 +20,7 @@ $(".btn").click(function () {
 });
 
 function nextSequence() {
-    console.log("next sequence");
+    userClickedPattern = [];
     level++;
 
     $("#level-title").text("Level " + level);
@@ -38,13 +38,12 @@ function nextSequence() {
     gamePattern.push(randomChosenColour);
 }
 
-function checkAnswer() {
-    let isAnswerCorrect = checkAnswer(userClickedPattern);
-    if (!isAnswerCorrect) {
+function checkAnswer(userClickedPattern) {
+    let isCorrect = isAnswerCorrect(userClickedPattern);
+    if (!isCorrect) {
         gameOver();
         startOver();
     } else if (userClickedPattern.length === gamePattern.length) {
-        userClickedPattern = [];
         setTimeout(nextSequence, 400);
     }
 }
